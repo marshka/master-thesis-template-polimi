@@ -1,0 +1,212 @@
+\documentclass[
+			titlepage,
+			twoside,
+			openright,
+			12pt
+			]{book}
+
+%*****************************************************************
+%										CORE PACKAGES
+%*****************************************************************
+
+\usepackage[english]{babel}
+%\usepackage[sc]{mathpazo}
+%\usepackage[utf8x]{inputenc}
+
+%\usepackage{fourier}
+%\usepackage[scaled]{helvet}
+%\usepackage{lettrine}
+
+\linespread{1.2}
+
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=4cm]{geometry}
+\geometry{a4paper}
+\usepackage{emptypage}
+
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{float}
+\graphicspath{{Figures/}}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,
+			linkcolor=black,
+			urlcolor=black,
+			citecolor=black,
+			}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+\usepackage{etoolbox}
+\providetoggle{matr}
+\settoggle{matr}{false}
+
+%*****************************************************************
+%												STYLE
+%*****************************************************************
+
+\usepackage{fancyhdr}
+\pagestyle{plain}
+
+%*****************************************************************
+%									CUSTOM COMMANDS
+%*****************************************************************
+
+\newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
+\newcommand{\todo}{{\bfseries\sffamily{TODO}}}
+
+%*****************************************************************
+%										CUSTOM COLORS
+%*****************************************************************
+
+\definecolor{ThesisGray}{HTML}{999999}
+
+%*****************************************************************
+%										FRONTESPIZIO
+%*****************************************************************
+
+\makeatletter
+\newcommand\formatnice[1]{%
+  \let\@formatsep\@formatsepinit
+  \@for\@ii:=#1\do{%
+    \@formatsep
+    \iftoggle{matr}
+    {\formatentry{\@ii} \settoggle{matr}{false}}
+	{\formatentrySC{\@ii} \settoggle{matr}{true}}%
+  }%
+}
+\def\@formatsepinit{\let\@formatsep\formatsep}
+\makeatother
+\newcommand\formatsep{\\}
+\newcommand\formatentry[1]{matr. #1}
+\newcommand\formatentrySC[1]{\textsc{#1}}
+
+\let\OldAuthor\author
+\renewcommand{\author}[1]{\OldAuthor{#1}\newcommand{\printAuthor}{\formatnice{#1}}}
+
+\let\OldTitle\title
+\renewcommand{\title}[1]{\OldTitle{#1}\newcommand{\printTitle}{{#1}}}
+
+\newcommand*\university[1]{\newcommand{\printUniversity}{{#1}}}
+\newcommand*\faculty[1]{\newcommand{\printFaculty}{{#1}}}
+\newcommand*\school[1]{\newcommand{\printSchool}{{#1}}}
+\newcommand*\department[1]{\newcommand{\printDepartment}{{#1}}}
+\newcommand*\course[1]{\newcommand{\printCourse}{{#1}}}
+\newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
+\newcommand*\assistant[1]{\newcommand{\printCoSupervisor}{{#1}}}
+\newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
+
+\newcommand*\titlecolor[1]{\colorlet{TitleColor}{#1}}
+\newcommand*\chapnumbercolor[1]{\colorlet{ChapNumberColor}{#1}}
+
+%*****************************************************************
+%											DEDICATION
+%*****************************************************************
+
+\newcommand*\dedication[1]{
+\cleardoublepage
+\newgeometry{left=3cm,right=3cm}
+\thispagestyle{empty}
+~\vspace{5cm}
+\begin{flushright}
+\begin{minipage}[t]{.5\textwidth}
+\begin{flushright}
+\itshape{{#1}}
+\end{flushright}
+\end{minipage}
+\end{flushright}
+\restoregeometry
+}
+
+%*****************************************************************
+%										TITLES STYLES
+%*****************************************************************
+
+\usepackage{titlesec}
+\titlespacing*{\chapter}{0cm}{0cm}{1.4cm}[1cm]
+
+\titleformat{\chapter}[display]
+  {\sc\Large}
+  {\flushright \parbox[t]{0pt}{\resizebox{.12\textwidth}{!}{\color{ChapNumberColor}{\thechapter}}}}
+  {-1.5cm}
+  {\vspace{1ex}\filright}
+  [\vspace{0.2ex}\titlerule]
+  
+\titleformat{\section}[block]
+  {\sc\large}
+  {\thesection}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\subsection}[block]
+  {\sc}
+  {\thesubsection}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\subsubsection}[block]
+  {\sc}
+  {}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\paragraph}[runin]
+  {\bfseries}
+  {}
+  {}
+  {}
+  
+\titleformat{\subparagraph}[runin]
+  {\sc}
+  {}
+  {}
+  {}
+
+%*****************************************************************
+%										ALGORITHMS
+%*****************************************************************
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\newcommand{\algorithmautorefname}{Algorithm}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\usepackage{listingsutf8} 
+\usepackage{lmodern}
+  
+%*****************************************************************
+%										MATH SETTINGS
+%*****************************************************************
+
+%\usepackage{mathptmx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\var}{Var}
+\DeclareMathOperator*{\ev}{\mathbb{E}}
+  
+%*****************************************************************
+%											THEOREMS
+%*****************************************************************
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\AfterEndEnvironment{theorem}{\noindent\ignorespaces}
+\AfterEndEnvironment{lemma}{\noindent\ignorespaces}
+\AfterEndEnvironment{proposition}{\noindent\ignorespaces}
+\AfterEndEnvironment{definition}{\noindent\ignorespaces}
+\newcommand{\definitionautorefname}{Definition}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propositionautorefname}{Proposition}
+
+%\renewcommand\qedsymbol{$\blacksquare$}
