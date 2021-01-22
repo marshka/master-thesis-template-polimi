@@ -4,12 +4,42 @@
 			openright,
 			12pt
 			]{book}
+			
+
+%*****************************************************************
+%											VARIABLES
+%*****************************************************************
+\newcommand{\thesisfont}[1]{%
+	\ifthenelse{\equal{\detokenize{#1}}{\detokenize{Baskerville}}}{%
+		\usepackage{baskervillef}
+		\usepackage[varqu,varl,var0]{inconsolata}
+		\usepackage[scale=.95,type1]{cabin}
+		\usepackage[baskerville,vvarbb]{newtxmath}
+		\usepackage[cal=boondoxo]{mathalfa}
+	}{
+	\ifthenelse{\equal{\detokenize{#1}}{\detokenize{Nimbus}}}{
+    	\usepackage{mathptmx}
+    }{
+    \ifthenelse{\equal{\detokenize{#1}}{\detokenize{Utopia}}}{
+    	\usepackage{fourier}
+    }{
+    \ifthenelse{\equal{\detokenize{#1}}{\detokenize{Palatino}}}{
+    	\usepackage{pxfonts}
+    }{
+    	\usepackage{lmodern} % default font
+    }}}}
+}
+
+\newcommand*\titlecolor[1]{\colorlet{TitleColor}{#1}}
+\newcommand*\chapnumbercolor[1]{\colorlet{ChapNumberColor}{#1}}
 
 %*****************************************************************
 %										CORE PACKAGES
 %*****************************************************************
 
-\usepackage[english]{babel}
+\newcommand*\thesislanguage[1]{\usepackage[{#1}]{babel}}
+\usepackage[T1]{fontenc}
+
 %\usepackage[sc]{mathpazo}
 %\usepackage[utf8x]{inputenc}
 
@@ -95,9 +125,6 @@
 \newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
 \newcommand*\assistant[1]{\newcommand{\printCoSupervisor}{{#1}}}
 \newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
-
-\newcommand*\titlecolor[1]{\colorlet{TitleColor}{#1}}
-\newcommand*\chapnumbercolor[1]{\colorlet{ChapNumberColor}{#1}}
 
 %*****************************************************************
 %											DEDICATION

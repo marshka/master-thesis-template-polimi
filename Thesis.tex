@@ -4,11 +4,36 @@
 %						CUSTOM PACKAGES
 %*****************************************************************
 
-% Add here your custom packages
-\usepackage{dsfont}
+% Should you need to add custom packages, this is the right place.
 
 %*****************************************************************
-%					    INSERT YOUR DATA
+%					    THESIS CUSTOMIZATIONS
+%*****************************************************************
+%
+%   In this section, you can insert the data to be displayed in
+%   the title page. If you do not want to show something, just
+%   comment it using '%' at the beginning of the line.
+%
+%*****************************************************************
+
+% Specify thesis language in lowercase (default "english")
+\thesislanguage{english}
+% Choose the font for the thesis
+\thesisfont{Palatino}
+% The available choices are: "Baskerville", "Nimbus", "Palatino", "Utopia"
+% If an invalid font is set, the fallback font used is the default LaTeX font "Computer Modern"
+%
+% Change title color
+\titlecolor{MidnightBlue}
+% Change color of chapters' number
+\chapnumbercolor{ThesisGray}
+% The colors available are the default ones plus the 68 dvips colors.
+% Find more at https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
+% You can define you own color as done for ThesisGray in the library file, even if it is
+% not recommended.
+
+%*****************************************************************
+%					    TITLE PAGE DATA
 %*****************************************************************
 %
 %   In this section, you can insert the data to be displayed in
@@ -31,14 +56,7 @@
 % They will be shown in different lines.
 \author{First Author, 000000, Second Author, 111111}
 \academicYear{20MM/20MN}
-% Change title color
-\titlecolor{MidnightBlue}
-% Change color of chapters' number
-\chapnumbercolor{ThesisGray}
-% The colors available are the default ones plus the 68 dvips colors.
-% Find more at https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
-% You can define you own color as done for ThesisGray in the library file, even if it is
-% not recommended.
+
 
 %*****************************************************************
 %							DOCUMENT
