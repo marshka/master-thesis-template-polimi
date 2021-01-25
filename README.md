@@ -29,47 +29,52 @@ In this section, you can find some tips that can help you in writing texts on La
 
 - Avoid defining your own chapters and sections styles. Stick to what the template uses.
 
-- Should you have to cite more than one reference at once, put them together inside the curly brakets.
+- Should you have to cite more than one reference at once, put them together inside the curly brackets.
 
 	> <span style="color: red;"> wrong</span>: \cite{foo}, \cite{bar}<br>
 	> <span style="color: green;"> correct</span>: \cite{foo, bar}
 	
 - Always add a `~` after *et al.* and *vs.* to avoid extra space
 
-	> <span style="color: red;"> wrong</span>: as shown by Doe et al.\cite{foo}, the...<br>
+	> <span style="color: red;"> wrong</span>: as shown by Doe et al. \cite{foo}, the...<br>
 	> <span style="color: green;"> correct</span>:  as shown by Doe et al.~\cite{foo}, the...
 
 - All `\ref` are preceded by a tilde.
 
-	> <span style="color: red;"> wrong</span>: Figure ~\ref{fig:mae}<br>
 	> <span style="color: red;"> wrong</span>: Figure\ref{fig:mae}<br>
 	> <span style="color: green;"> correct</span>: Figure~\ref{fig:mae}
 
-- The `\autoref` command let you refer to items by automatically adding the inferred prefix. The following examples produce the same output.
+- The `\autoref` command provided by the `hyperref` package (included in the template) let you refer to items by automatically adding the inferred prefix. The following examples produce the same output.
 
 	> <span style="color: green;"> correct</span>: As shown in Figure~\ref{fig:mae}<br>
 	> <span style="color: green;"> correct</span>: As shown in \autoref{fig:mae}
+
+
+### Other LaTeX suggestions
+
+- [Labels and Cross-referencing](https://en.wikibooks.org/wiki/LaTeX/Labels_and_Cross-referencing)
+- [Bibliography Management](https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management)
 
 
 <!-- ENGLISH TIPS -->
 
 ## English tips
 
-In this section, you can find some tips that can help you not to incur common mistakes while writing in English.
+In this section, you can find some tips that can help you not to incur in common mistakes while writing in English.
 
 - Never use a hyphen after an adverb that ends in "ly"
 
 	> <span style="color: red;"> wrong</span>: widely-known paper<br>
 	> <span style="color: green;"> correct</span>: widely known paper
 
-- Numbers one to ten should be written as words, and higher numbers as digits.
+- Numbers one to ten should be written as words, greater numbers as digits.
 
 - Write gender-neutral. Avoid using "he/she", use plural or they. If absolutely necessary, use only "she".
 
 - Never use citations in their own as nouns.
 
-	> <span style="color: red;"> wrong</span>: as [22] shows<br>
-	> <span style="color: green;"> correct</span>: as the work of Doe et al. [22] shows
+	> <span style="color: red;"> wrong</span>: as [22] shows...<br>
+	> <span style="color: green;"> correct</span>: as the work of Doe et al. [22] shows...
 	
 - Avoid using citations in the abstract. The abstract can be used on its own in different context (e.g., on the conference web page) so having a citation number there is pointless.
 
@@ -81,6 +86,9 @@ In this section, you can find some tips that can help you not to incur common mi
 
 - Use a comma before the "and" when the "and" separates two full sentences.
 
+	> <span style="color: red;"> wrong</span>: I like apples and I adore pears.<br>
+	> <span style="color: green;"> correct</span>: I like apples, and I adore pears.
+
 - Never put a comma between subject and verb. In lists, use a comma before the last item, even if it starts with "and".
 
 	> <span style="color: red;"> wrong</span>: We will eat meat, vegetables and bread.<br>
@@ -88,9 +96,6 @@ In this section, you can find some tips that can help you not to incur common mi
 
 	> <span style="color: red;"> wrong</span>: I like apples, and pears.<br>
 	> <span style="color: green;"> correct</span>: I like apples and pears.
-
-	> <span style="color: red;"> wrong</span>: I like apples and I adore pears.<br>
-	> <span style="color: green;"> correct</span>: I like apples, and I adore pears.
 	
 - The sounds of the acronym/initialism determines the use of "a" or "an".
 
@@ -101,8 +106,9 @@ In this section, you can find some tips that can help you not to incur common mi
 - Do not be too verbose.
 
 	> <span style="color: orange;">bad</span>: We did this experiment in order to show...<br>
-	> <span style="color: green;">better</span>: We did this experiment to show...	
-- "Section" and "Chapter" are uppercase if they refer to a specific section/chapter, with number. If it is used in a generic fashion then it is lower case. "In this section"/"In this chapter" senteces are always followed by a comma.
+	> <span style="color: green;">better</span>: We did this experiment to show...
+
+- "Section" and "Chapter" are uppercase if they refer to a specific section/chapter, with the relative number. If it is used in a generic fashion, then it is lower case. "In this section"/"In this chapter" senteces are always followed by a comma.
 
 	> <span style="color: green;"> correct</span>: In Section 4, we will show...<br>
 	> <span style="color: green;"> correct</span>: In this section, we will show...
@@ -114,16 +120,14 @@ In this section, you can find some tips that can help you not to incur common mi
 	> <span style="color: orange;">bad</span>: A model that outperforms the state of the art has been built.<br>
 	> <span style="color: green;">better</span>: We built a model that outperforms the state of the art.
 
-- Write uniformly and make sure verbal tenses are consistent in periods/sections. It is easier to stick to the present throughout all the theses.
+- Write uniformly and make sure verbal tenses are consistent in periods/sections. It is convenient to stick to the present throughout all the thesis.
 
 - Avoid too many synonyms, as they confuse the reader.
 
 ### Other English suggestions 
 
 - [Differences between en (–) and em (—) dashes](https://getitwriteonline.com/articles/en-dashes-em-dashes/)
-
 - [Who vs which vs that](https://www.dailywritingtips.com/when-to-use-that-which-and-who/)
-
 - [How to properly use articles](https://owl.purdue.edu/owl/general_writing/grammar/using_articles.html)
 
 
@@ -132,7 +136,7 @@ In this section, you can find some tips that can help you not to incur common mi
 ## Utilities
 
 - [Grammarly](https://app.grammarly.com/): make your writing clear and engaging, eliminating grammar errors.
-- [Ludwig Guru](https://ludwig.guru/): helps you understand if your English sentence is correct and make sense in the academic context.
+- [Ludwig Guru](https://ludwig.guru/): helps you understand if your English sentence is correct and makes sense in the academic context.
 - [Reverso Context](https://context.reverso.net/): translate sentences in English according to the context relying on verified translation examples.
 
 
@@ -148,8 +152,6 @@ Distributed under the MIT License. See [`LICENSE`](https://github.com/marshka/ma
 ## Contact
 
 Ivan Marisca - [@marshka](https://github.com/marshka)
-
-Project Link: [https://github.com/marshka/master-thesis-template-polimi](https://github.com/marshka/master-thesis-template-polimi)
 
 <a href="https://linkedin.com/in/ivanmarisca">
 	<img src="https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555" alt="Linkedin"/>
