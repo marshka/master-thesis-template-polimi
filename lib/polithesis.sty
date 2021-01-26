@@ -1,0 +1,308 @@
+
+%*****************************************************************
+%											VARIABLES
+%*****************************************************************
+\newcommand{\thesisfont}[1]{%
+	\ifthenelse{\equal{\detokenize{#1}}{\detokenize{Baskerville}}}{%
+		\usepackage{baskervillef}
+		\usepackage[varqu,varl,var0]{inconsolata}
+		\usepackage[scale=.95,type1]{cabin}
+		\usepackage[baskerville,vvarbb]{newtxmath}
+		\usepackage[cal=boondoxo]{mathalfa}
+	}{
+	\ifthenelse{\equal{\detokenize{#1}}{\detokenize{Nimbus}}}{
+    	\usepackage{mathptmx}
+    }{
+    \ifthenelse{\equal{\detokenize{#1}}{\detokenize{Utopia}}}{
+    	\usepackage{fourier}
+    }{
+    \ifthenelse{\equal{\detokenize{#1}}{\detokenize{Palatino}}}{
+    	\usepackage{pxfonts}
+    }{
+    	\usepackage{lmodern} % default font
+    }}}}
+}
+
+\newcommand*\titlecolor[1]{\colorlet{TitleColor}{#1}}
+\newcommand*\chapnumbercolor[1]{\colorlet{ChapNumberColor}{#1}}
+
+\newcommand*\thesislanguage[1]{\usepackage[{#1}]{babel}}
+
+%*****************************************************************
+%										CORE PACKAGES
+%*****************************************************************
+
+\usepackage[T1]{fontenc}
+
+\linespread{1.2}
+
+\usepackage[top=3cm,bottom=3cm,left=3cm,right=4cm]{geometry}
+\geometry{a4paper}
+\usepackage{emptypage}
+
+\usepackage{graphicx}
+\usepackage{caption, subcaption}
+\usepackage{float}
+\graphicspath{{Figures/}}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage[pdfusetitle]{hyperref}
+\hypersetup{colorlinks=true,
+			linkcolor=black,
+			urlcolor=black,
+			citecolor=black,
+			}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+
+\usepackage{etoolbox}
+
+%*****************************************************************
+%												STYLE
+%*****************************************************************
+
+\usepackage{fancyhdr}
+\pagestyle{plain}
+
+%*****************************************************************
+%									CUSTOM COMMANDS
+%*****************************************************************
+
+\newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
+\newcommand{\todo}{{\bfseries\sffamily{TODO}}}
+
+%*****************************************************************
+%										CUSTOM COLORS
+%*****************************************************************
+
+\definecolor{ThesisGray}{HTML}{999999}
+
+%*****************************************************************
+%										TITLEPAGE
+%*****************************************************************
+
+%  Formatting authors for Title Page
+\newtoggle{printAuthorEntry}
+\makeatletter
+\newcommand\formatAuthors[1]{%
+	\togglefalse{printAuthorEntry}
+  	\@for\@ii:=#1\do{%
+    		\iftoggle{printAuthorEntry}
+    		{\printMatriculationPrefix~\@ii\\ \togglefalse{printAuthorEntry}}
+			{%
+				\listxadd\authorsList\@ii%
+				\textsc{\@ii}\\%
+				\toggletrue{printAuthorEntry}%
+			}%
+  	}%
+}
+\makeatother
+
+\newcommand{\authors}[1]{%
+	\newcommand{\printAuthor}{\formatAuthors{#1}}%
+	\newcommand{\authorsNames}{
+		\newcounter{authorsProcessed}%
+		\forlistloop{\ifnum\value{authorsProcessed}>0,~\fi \stepcounter{authorsProcessed} }{\authorsList}
+	}
+	\author{\authorsList}%
+}
+
+\let\OldTitle\title
+\renewcommand{\title}[1]{\OldTitle{#1}\newcommand{\printTitle}{{#1}}}
+
+\newcommand*\university[1]{\newcommand{\printUniversity}{{#1}}}
+\newcommand*\faculty[1]{\newcommand{\printFaculty}{{#1}}}
+\newcommand*\school[1]{\newcommand{\printSchool}{{#1}}}
+\newcommand*\department[1]{\newcommand{\printDepartment}{{#1}}}
+\newcommand*\course[1]{\newcommand{\printCourse}{{#1}}}
+\newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
+\newcommand*\assistant[1]{\newcommand{\printCoSupervisor}{{#1}}}
+\newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
+\newcommand*\matriculationPrefix[1]{\newcommand{\printMatriculationPrefix}{{#1}}}
+
+%*****************************************************************
+%											DEDICATION
+%*****************************************************************
+
+\newcommand*\dedication[1]{
+\cleardoublepage
+\newgeometry{left=3cm,right=3cm}
+\thispagestyle{empty}
+~\vspace{5cm}
+\begin{flushright}
+\begin{minipage}[t]{.5\textwidth}
+\begin{flushright}
+\itshape{{#1}}
+\end{flushright}
+\end{minipage}
+\end{flushright}
+\restoregeometry
+}
+
+%*****************************************************************
+%										TITLES STYLES
+%*****************************************************************
+
+\usepackage{titlesec}
+\titlespacing*{\chapter}{0cm}{0cm}{1.4cm}[1cm]
+
+\titleformat{\chapter}[display]
+  {\sc\Large}
+  {\flushright \parbox[t]{0pt}{\resizebox{.12\textwidth}{!}{\color{ChapNumberColor}{\thechapter}}}}
+  {-1.5cm}
+  {\vspace{1ex}\filright}
+  [\vspace{0.2ex}\titlerule]
+  
+\titleformat{\section}[block]
+  {\sc\large}
+  {\thesection}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\subsection}[block]
+  {\sc}
+  {\thesubsection}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\subsubsection}[block]
+  {\sc}
+  {}
+  {0.5cm}
+  {}
+  [\vspace{0.2cm}]
+  
+\titleformat{\paragraph}[runin]
+  {\bfseries}
+  {}
+  {}
+  {}
+  
+\titleformat{\subparagraph}[runin]
+  {\sc}
+  {}
+  {}
+  {}
+
+%*****************************************************************
+%										ALGORITHMS
+%*****************************************************************
+
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\newcommand{\algorithmautorefname}{Algorithm}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\usepackage{listingsutf8} 
+\usepackage{lmodern}
+  
+%*****************************************************************
+%										MATH SETTINGS
+%*****************************************************************
+
+%\usepackage{mathptmx}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\var}{Var}
+\DeclareMathOperator*{\ev}{\mathbb{E}}
+  
+%*****************************************************************
+%											THEOREMS
+%*****************************************************************
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\AfterEndEnvironment{theorem}{\noindent\ignorespaces}
+\AfterEndEnvironment{lemma}{\noindent\ignorespaces}
+\AfterEndEnvironment{proposition}{\noindent\ignorespaces}
+\AfterEndEnvironment{definition}{\noindent\ignorespaces}
+\newcommand{\definitionautorefname}{Definition}
+\newcommand{\lemmaautorefname}{Lemma}
+\newcommand{\propositionautorefname}{Proposition}
+
+%\renewcommand\qedsymbol{$\blacksquare$}
+  
+%*****************************************************************
+%											TITLE PAGE
+%*****************************************************************
+
+\renewcommand{\maketitle}{%
+\newgeometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=3.5cm}
+\begin{titlepage}
+\large \linespread{1.05}
+\begin{center}
+\textsc{\printUniversity}\\[1em]
+
+\ifcsname printFaculty\endcsname
+    \printFaculty\\
+\fi
+
+\ifcsname printSchool\endcsname
+    \printSchool\\
+\fi
+
+\ifcsname printDepartment\endcsname
+    \printDepartment\\[.5em]
+\fi
+
+\ifcsname printCourse\endcsname
+Master of Science in\\
+    \printCourse\\
+\fi
+\vfill
+\includegraphics[width=0.25\textwidth]{lib/logo_polimi_symbol.pdf}
+%\includegraphics[scale=1.8]{lib/logo_polimi_name.pdf}
+\vfill
+\ifcsname printTitle\endcsname
+\Huge{\textsc{\color{TitleColor}{\printTitle}}}
+\vfill
+\fi
+\end{center}
+
+\ifcsname printSupervisor\endcsname
+\noindent Supervisor:\\
+    \textsc{\printSupervisor}
+\fi
+
+\ifcsname printCoSupervisor\endcsname
+\vspace{6px} \noindent Assistant Supervisor:\\
+    \textsc{\printCoSupervisor}
+\fi
+
+\ifcsname printAuthor\endcsname
+\vfill
+\flushright
+MSc Thesis by:\\[0.1cm]
+	\printAuthor
+\fi
+
+\ifcsname printYear\endcsname
+\vfill
+\begin{center}
+Academic Year \printYear
+\end{center}
+\fi
+\end{titlepage}
+\restoregeometry
+}
+
+\newcommand{\thesistoc}{%
+\cleardoublepage
+{%
+\titlespacing*{\chapter}{0cm}{0cm}{1cm}[0cm]
+\renewcommand*\cleardoublepage{\newpage}
+\tableofcontents
+\listoffigures
+\listoftables
+\listofalgorithms%
+}%
+}
