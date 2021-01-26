@@ -1,4 +1,11 @@
-\input{util/libthesis.tex}
+\documentclass[
+			titlepage,
+			twoside,
+			openright,
+			12pt
+			]{book}
+			
+\usepackage{lib/polithesis}
 
 %*****************************************************************
 %						CUSTOM PACKAGES
@@ -19,10 +26,9 @@
 % Specify thesis language in lowercase (default "english")
 \thesislanguage{english}
 % Choose the font for the thesis
-\thesisfont{Palatino}
 % The available choices are: "Baskerville", "Nimbus", "Palatino", "Utopia"
 % If an invalid font is set, the fallback font used is the default LaTeX font "Computer Modern"
-%
+\thesisfont{Palatino}
 % Change title color
 \titlecolor{MidnightBlue}
 % Change color of chapters' number
@@ -31,6 +37,7 @@
 % Find more at https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
 % You can define you own color as done for ThesisGray in the library file, even if it is
 % not recommended.
+
 
 %*****************************************************************
 %					    TITLE PAGE DATA
@@ -54,7 +61,8 @@
 % number joined with a comma.
 % You can specify more than one author, separating each one with a comma.
 % They will be shown in different lines.
-\author{First Author, 000000, Second Author, 111111}
+\matriculationPrefix{matr.}
+\authors{First Author, 000000, Second Author, 111111}
 \academicYear{20MM/20MN}
 
 
@@ -64,7 +72,7 @@
 
 \begin{document}
 
-\input{util/TitlePage.tex}
+\maketitle
 
 % Optional, comment or delete instruction to remove
 \dedication{Insert here your dedication.\\Optional.}
