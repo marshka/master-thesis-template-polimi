@@ -1,20 +1,20 @@
 \documentclass[
-			titlepage,
-			twoside,
-			openright,
-			12pt
-			]{book}
-			
+    titlepage,
+    twoside,
+    openright,
+    12pt
+]{book}
+            
 \usepackage{lib/polithesis}
 
 %*****************************************************************
-%						CUSTOM PACKAGES
+%                        CUSTOM PACKAGES
 %*****************************************************************
 
 % Should you need to add custom packages, this is the right place.
 
 %*****************************************************************
-%					    THESIS CUSTOMIZATIONS
+%                        THESIS CUSTOMIZATIONS
 %*****************************************************************
 %
 %   In this section, you can insert the data to be displayed in
@@ -26,7 +26,7 @@
 % Specify thesis language in lowercase (default "english")
 \thesislanguage{english}
 % Choose the font for the thesis
-% The available choices are: "Baskerville", "Nimbus", "Palatino", "Utopia"
+% The available choices are: "Computer Modern", "Baskerville", "Nimbus", "Palatino", "Utopia"
 % If an invalid font is set, the fallback font used is the default LaTeX font "Computer Modern"
 \thesisfont{Palatino}
 % Change title color
@@ -38,9 +38,8 @@
 % You can define you own color as done for ThesisGray in the library file, even if it is
 % not recommended.
 
-
 %*****************************************************************
-%					    TITLE PAGE DATA
+%                        TITLE PAGE DATA
 %*****************************************************************
 %
 %   In this section, you can insert the data to be displayed in
@@ -65,26 +64,50 @@
 \authors{First Author, 000000, Second Author, 111111}
 \academicYear{20MM/20MN}
 
-
 %*****************************************************************
-%							DOCUMENT
+%                                THESIS CONTENT
 %*****************************************************************
 
 \begin{document}
 
+% Title Page
 \maketitle
 
 % Optional, comment or delete instruction to remove
 \dedication{Insert here your dedication.\\Optional.}
 
-\input{ChaptersList.tex}
-
+% Chapters
+\frontmatter
+\pagenumbering{Roman}
+\input{Chapters/Abstract.tex}
+\input{Chapters/Sommario.tex}
+\input{Chapters/Acknowledgements.tex}
+\thesistoc
 
 %*****************************************************************
-%						REFERENCE LIST
+%                                        CHAPTERS
+%*****************************************************************
+
+\mainmatter
+\input{Chapters/Introduction.tex}
+\input{Chapters/Preliminaries_and_Sota}
+\input{Chapters/ProblemFormulation.tex}
+\input{Chapters/Solution.tex}
+\input{Chapters/Evaluation.tex}
+\input{Chapters/Conclusions.tex}
+
+%*****************************************************************
+%                                        APPENDIX
+%*****************************************************************
+
+\appendix
+\input{Chapters/Appendix.tex}
+\input{Chapters/Thanks.tex}
+
+%*****************************************************************
+%                                    REFERENCE LIST
 %*****************************************************************
 
 \bibliography{biblio}
-\bibliographystyle{plain}
 
 \end{document}

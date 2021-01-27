@@ -54,6 +54,8 @@
 			}
 \usepackage[nottoc,notlot,notlof]{tocbibind}
 
+\bibliographystyle{plain}
+
 \usepackage{etoolbox}
 
 %*****************************************************************
@@ -99,10 +101,6 @@
 
 \newcommand{\authors}[1]{%
 	\newcommand{\printAuthor}{\formatAuthors{#1}}%
-	\newcommand{\authorsNames}{
-		\newcounter{authorsProcessed}%
-		\forlistloop{\ifnum\value{authorsProcessed}>0,~\fi \stepcounter{authorsProcessed} }{\authorsList}
-	}
 	\author{\authorsList}%
 }
 
@@ -259,7 +257,7 @@ Master of Science in\\
     \printCourse\\
 \fi
 \vfill
-\includegraphics[width=0.25\textwidth]{lib/logo_polimi_symbol.pdf}
+\includegraphics[width=0.28\textwidth]{lib/logo_polimi_symbol.pdf}
 %\includegraphics[scale=1.8]{lib/logo_polimi_name.pdf}
 \vfill
 \ifcsname printTitle\endcsname
@@ -274,7 +272,7 @@ Master of Science in\\
 \fi
 
 \ifcsname printCoSupervisor\endcsname
-\vspace{6px} \noindent Assistant Supervisor:\\
+\vspace{6px} \noindent Co-Supervisor:\\
     \textsc{\printCoSupervisor}
 \fi
 
@@ -295,14 +293,43 @@ Academic Year \printYear
 \restoregeometry
 }
 
+%*****************************************************************
+%									TABLE OF CONTENTS
+%*****************************************************************
+
+\newcounter{nfigures}
+\newcounter{ntables}
+\newcounter{nalgorithms}
+
+\AtEndEnvironment{figure}{\stepcounter{nfigures}}
+\AtEndEnvironment{table}{\stepcounter{ntables}}
+\AtEndEnvironment{algorithm}{\stepcounter{nalgorithms}}
+
+\providecommand\nfigures{0}
+\providecommand\ntables{0}
+\providecommand\nalgorithms{0}
+
+% Set back globally the number of figures/tables/algorithms
+\makeatletter
+\AtEndDocument{\write\@auxout{\noexpand\global\noexpand\def\noexpand\nfigures{\number\value{nfigures}}}}
+\AtEndDocument{\write\@auxout{\noexpand\global\noexpand\def\noexpand\ntables{\number\value{ntables}}}}
+\AtEndDocument{\write\@auxout{\noexpand\global\noexpand\def\noexpand\nalgorithms{\number\value{nalgorithms}}}}
+\makeatother
+
 \newcommand{\thesistoc}{%
-\cleardoublepage
-{%
-\titlespacing*{\chapter}{0cm}{0cm}{1cm}[0cm]
-\renewcommand*\cleardoublepage{\newpage}
-\tableofcontents
-\listoffigures
-\listoftables
-\listofalgorithms%
-}%
+	\cleardoublepage
+	{%
+		\titlespacing*{\chapter}{0cm}{0cm}{1cm}[0cm]
+		\renewcommand*\cleardoublepage{\newpage}
+		\tableofcontents
+		\ifnum\nfigures>0
+			\listoffigures
+		\fi
+		\ifnum\ntables>0
+			\listoftables
+		\fi
+		\ifnum\nalgorithms>0
+  			\listofalgorithms
+		\fi
+	}%
 }
