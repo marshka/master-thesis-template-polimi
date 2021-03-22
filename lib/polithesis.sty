@@ -71,6 +71,15 @@
 
 \newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
 \newcommand{\todo}{{\bfseries\sffamily{TODO}}}
+% command length: takes as input a list and a name and instantiate a counter
+% with the length of the list
+\makeatletter
+\newcommand{\length}[2]{%
+    \newcounter{#2}%
+    \renewcommand*{\do}[1]{\stepcounter{#2}}%
+    \docsvlist{#1}%
+}
+\makeatother
 
 %*****************************************************************
 %										CUSTOM COLORS
@@ -82,9 +91,9 @@
 %										TITLEPAGE
 %*****************************************************************
 
-%  Formatting authors for Title Page
-\newtoggle{printAuthorEntry}
+%  Formatting authors and co-supervisors for title page
 \makeatletter
+\newtoggle{printAuthorEntry}
 \newcommand\formatAuthors[1]{%
 	\togglefalse{printAuthorEntry}
   	\@for\@ii:=#1\do{%
@@ -97,6 +106,7 @@
 			}%
   	}%
 }
+\newcommand\formatCoSupervisors[1]{\@for\@ii:=#1\do{\@ii\\}}
 \makeatother
 
 \newcommand{\authors}[1]{%
@@ -113,7 +123,8 @@
 \newcommand*\department[1]{\newcommand{\printDepartment}{{#1}}}
 \newcommand*\course[1]{\newcommand{\printCourse}{{#1}}}
 \newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
-\newcommand*\assistant[1]{\newcommand{\printCoSupervisor}{{#1}}}
+\newcommand*\cosupervisors[1]{\newcommand{\printCoSupervisors}{\formatCoSupervisors{#1}}
+\length{#1}{CoSupervisors}}
 \newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
 \newcommand*\matriculationPrefix[1]{\newcommand{\printMatriculationPrefix}{{#1}}}
 
@@ -233,6 +244,8 @@
 %											TITLE PAGE
 %*****************************************************************
 
+\newcommand{\polimiLogoPath}{./lib/logo_polimi_symbol.pdf}
+
 \renewcommand{\maketitle}{%
 \newgeometry{top=2.5cm,bottom=2.5cm,left=3.5cm,right=3.5cm}
 \begin{titlepage}
@@ -257,7 +270,7 @@ Master of Science in\\
     \printCourse\\
 \fi
 \vfill
-\includegraphics[width=0.28\textwidth]{lib/logo_polimi_symbol.pdf}
+\includegraphics[width=0.28\textwidth]{\polimiLogoPath}
 %\includegraphics[scale=1.8]{lib/logo_polimi_name.pdf}
 \vfill
 \ifcsname printTitle\endcsname
@@ -271,13 +284,16 @@ Master of Science in\\
     \textsc{\printSupervisor}
 \fi
 
-\ifcsname printCoSupervisor\endcsname
-\vspace{6px} \noindent Co-Supervisor:\\
-    \textsc{\printCoSupervisor}
+\ifcsname printCoSupervisors\endcsname
+\ifnum\value{CoSupervisors}>0
+\vspace{6px} \noindent Co-Supervisor%
+\ifnum\value{CoSupervisors}>1s\fi% add final 's' if more than one Co-Supervisor
+	:\\
+    \textsc{\printCoSupervisors}
+\fi
 \fi
 
 \ifcsname printAuthor\endcsname
-\vfill
 \flushright
 MSc Thesis by:\\[0.1cm]
 	\printAuthor

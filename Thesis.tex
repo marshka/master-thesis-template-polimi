@@ -4,7 +4,7 @@
     openright,
     12pt
 ]{book}
-            
+
 \usepackage{lib/polithesis}
 
 %*****************************************************************
@@ -54,14 +54,15 @@
 \department{Dipartimento di Elettronica, Informazione e Bioingegneria}
 \course{Computer Science and Engineering}
 \title{A Fancy Title\\for a Fancy Thesis}
-\supervisor{Prof. Name Surname}
-\assistant{Dr. Name Surname}
+\supervisor{Prof. Enrico Fermi}
+% You can specify more than one co-supervisor, separating each one with a comma.
+\cosupervisors{Prof. Alice First, Dr. Bob Second}
 % Each author should be added as a tuple of her name and her matriculation
 % number joined with a comma.
 % You can specify more than one author, separating each one with a comma.
 % They will be shown in different lines.
-\matriculationPrefix{matr.}
-\authors{First Author, 000000, Second Author, 111111}
+\authors{Your Self, 000000, Your Second Self, 111111}
+\matriculationPrefix{matr.}  % specify prefix for matriculation number
 \academicYear{20MM/20MN}
 
 %*****************************************************************
@@ -79,9 +80,9 @@
 % Chapters
 \frontmatter
 \pagenumbering{Roman}
-\input{Chapters/Abstract.tex}
-\input{Chapters/Sommario.tex}
-\input{Chapters/Acknowledgements.tex}
+\include{Chapters/Abstract}
+\include{Chapters/Sommario}
+\include{Chapters/Acknowledgements}
 \thesistoc
 
 %*****************************************************************
@@ -89,20 +90,20 @@
 %*****************************************************************
 
 \mainmatter
-\input{Chapters/Introduction.tex}
-\input{Chapters/Preliminaries_and_Sota}
-\input{Chapters/ProblemFormulation.tex}
-\input{Chapters/Solution.tex}
-\input{Chapters/Evaluation.tex}
-\input{Chapters/Conclusions.tex}
+\include{Chapters/Introduction}
+\include{Chapters/Preliminaries_and_Sota}
+\include{Chapters/ProblemFormulation}
+\include{Chapters/Solution}
+\include{Chapters/Evaluation}
+\include{Chapters/Conclusions}
 
 %*****************************************************************
 %                                        APPENDIX
 %*****************************************************************
 
 \appendix
-\input{Chapters/Appendix.tex}
-\input{Chapters/Thanks.tex}
+\include{Chapters/Appendix}
+\include{Chapters/Thanks}
 
 %*****************************************************************
 %                                    REFERENCE LIST
