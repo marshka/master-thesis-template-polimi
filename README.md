@@ -27,6 +27,8 @@ In this section, you can find some tips that can help you in writing texts on La
 
 - Avoid using `\vspace` in figures unless it's absolutely necessary. It usually messes with the space below the caption.
 
+- Single quotation marks are produced in LaTeX using \` and '. Double quotation marks are produced by typing \`\` and ''. The undirected double quote character " produces double right quotation marks: it should never be used where left quotation marks are required ([source](https://www.maths.tcd.ie/~dwilkins/LaTeXPrimer/QuotDash.html)).
+
 - Avoid defining your own chapters and sections styles. Stick to what the template uses.
 
 - Should you have to cite more than one reference at once, put them together inside the curly brackets.
