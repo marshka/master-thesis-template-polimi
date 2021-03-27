@@ -27,50 +27,11 @@ You may insert a subsection for each of the most relevant features of your probl
 
 You can keep a notation table for the notation used in this chapter as \autoref{tab:notation}. Everything inside the notation table must be written at least once inside this chapter. You can put an extended notation for the whole thesis in the appendix.
 
-It is likely that you have to present definitions, theorems or propositions. We suggests to use the following environments. You can cite them as \autoref{thm:alphabetaapprox}, \autoref{thm:approximation}, \autoref{thm:chernoff}.
-
-\begin{definition}[$(\alpha, \beta)$-approximation]
-\label{thm:alphabetaapprox}
-An $(\alpha, \beta)$\textit{-approximation} algorithm outputs with success probability $\beta$ a solution which is at least $\alpha$ fraction of the optimal solution, for some $\alpha, \beta \leq 1$.
-\end{definition}
-
-\begin{theorem}
-\label{thm:approximation}
-For a non-negative, monotone, submodular function $f(\cdot)$, let $S_k$ be a set obtained by selecting $k$ elements one at a time, each time choosing an element that provides the largest marginal increase in the function value. Let $S_k^*$ be a set that maximizes the value of $f(\cdot)$ over all $k$-sized sets. Then,
-$$f(S_k) \geq \left( 1-\frac{1}{e} \right) \cdot f(S_k^*).$$
-\end{theorem}
-
-\begin{proposition}
-\label{thm:chernoff}
-If the diffusion process starting with $S$ is simulated independently at least $r=\Omega\left(\frac{n^2}{\varepsilon^2}\ln\left(\frac{1}{\delta}\right)\right)$ times, then the average number of activated nodes over these simulations is a $(1 \pm \varepsilon)$-approximation to $\sigma(S)$, with probability at least $1 - \delta$.
-\end{proposition}
+It is likely that you have to present definitions, theorems or propositions. We suggests to use the environments provided by the template. You can find the guide in the LaTeX suggestions chapter.
 
 \section{State of the Art}
 \label{sec:sota}
 
-``In this section, we survey the most relevant works for the problems of ... ."
-
-If you face a problem that has more than one macro-topic, you may choose to add a subsection for each of these topics (better no more than 2-3), like \emph{Related works on Topic 1}, etc.
+In this section, we survey the most relevant works related to the argument of your thesis. If you face a problem that has more than one macro-topic, you may choose to add a subsection for each of these topics (better no more than 2-3), like \emph{Related works on Topic 1}, etc.
 
 List the works in chronological order and cite only the most important and pertinent ones, avoid 100 citations for a master thesis.
-
-You can insert pseudocodes of algorithms as \autoref{alg:cts}.
-
-\begin{algorithm}[t]
-\caption{Combinatorial Thompson Sampling}
-\label{alg:cts}
-\begin{algorithmic}[1]
-\Require Directed graph $G(V,E)$, budget constraint $k$, time horizon $T$
-\For {$i = 1$ \textbf{to} $|E|$}
-\State $\alpha_i = 1, \beta_i = 1$ \Comment{Assign a Beta distribution Beta(1,1) to each edge}
-\EndFor
-
-\For {$t = 1$ \textbf{to} $T$}
-\State For each arm $i$, draw a sample $\theta_i(t) \sim$ Beta$(\alpha_i, \beta_i)$
-\State Let $\boldsymbol{\theta}(t) = \left(\theta_1(t), \ldots, \theta_m(t) \right)$
-\State $S_t \gets$ \texttt{oracle}$(G(V,E,\boldsymbol{\theta}(t)), k)$
-\State Run cascade with $S_t$ as the seed set and collect the feedback $F_t$
-\State Update the Beta distributions of the edges involved using $F_t$
-\EndFor
-\end{algorithmic}
-\end{algorithm}

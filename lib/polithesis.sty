@@ -1,6 +1,6 @@
 
 %*****************************************************************
-%											VARIABLES
+%                            VARIABLES                            
 %*****************************************************************
 \newcommand{\thesisfont}[1]{%
 	\ifthenelse{\equal{\detokenize{#1}}{\detokenize{Baskerville}}}{%
@@ -29,7 +29,7 @@
 \newcommand*\thesislanguage[1]{\usepackage[{#1}]{babel}}
 
 %*****************************************************************
-%										CORE PACKAGES
+%                          CORE PACKAGES                          
 %*****************************************************************
 
 \usepackage[T1]{fontenc}
@@ -52,104 +52,19 @@
 			urlcolor=black,
 			citecolor=black,
 			}
+			
 \usepackage[nottoc,notlot,notlof]{tocbibind}
-
 \bibliographystyle{plain}
 
 \usepackage{etoolbox}
+\usepackage{mdframed}
 
 %*****************************************************************
-%												STYLE
+%                              STYLE                              
 %*****************************************************************
 
 \usepackage{fancyhdr}
 \pagestyle{plain}
-
-%*****************************************************************
-%									CUSTOM COMMANDS
-%*****************************************************************
-
-\newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
-\newcommand{\todo}{{\bfseries\sffamily{TODO}}}
-% command length: takes as input a list and a name and instantiate a counter
-% with the length of the list
-\makeatletter
-\newcommand{\length}[2]{%
-    \newcounter{#2}%
-    \renewcommand*{\do}[1]{\stepcounter{#2}}%
-    \docsvlist{#1}%
-}
-\makeatother
-
-%*****************************************************************
-%										CUSTOM COLORS
-%*****************************************************************
-
-\definecolor{ThesisGray}{HTML}{999999}
-
-%*****************************************************************
-%										TITLEPAGE
-%*****************************************************************
-
-%  Formatting authors and co-supervisors for title page
-\makeatletter
-\newtoggle{printAuthorEntry}
-\newcommand\formatAuthors[1]{%
-	\togglefalse{printAuthorEntry}
-  	\@for\@ii:=#1\do{%
-    		\iftoggle{printAuthorEntry}
-    		{\printMatriculationPrefix~\@ii\\ \togglefalse{printAuthorEntry}}
-			{%
-				\listxadd\authorsList\@ii%
-				\textsc{\@ii}\\%
-				\toggletrue{printAuthorEntry}%
-			}%
-  	}%
-}
-\newcommand\formatCoSupervisors[1]{\@for\@ii:=#1\do{\@ii\\}}
-\makeatother
-
-\newcommand{\authors}[1]{%
-	\newcommand{\printAuthor}{\formatAuthors{#1}}%
-	\author{\authorsList}%
-}
-
-\let\OldTitle\title
-\renewcommand{\title}[1]{\OldTitle{#1}\newcommand{\printTitle}{{#1}}}
-
-\newcommand*\university[1]{\newcommand{\printUniversity}{{#1}}}
-\newcommand*\faculty[1]{\newcommand{\printFaculty}{{#1}}}
-\newcommand*\school[1]{\newcommand{\printSchool}{{#1}}}
-\newcommand*\department[1]{\newcommand{\printDepartment}{{#1}}}
-\newcommand*\course[1]{\newcommand{\printCourse}{{#1}}}
-\newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
-\newcommand*\cosupervisors[1]{\newcommand{\printCoSupervisors}{\formatCoSupervisors{#1}}
-\length{#1}{CoSupervisors}}
-\newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
-\newcommand*\matriculationPrefix[1]{\newcommand{\printMatriculationPrefix}{{#1}}}
-
-%*****************************************************************
-%											DEDICATION
-%*****************************************************************
-
-\newcommand*\dedication[1]{
-\cleardoublepage
-\newgeometry{left=3cm,right=3cm}
-\thispagestyle{empty}
-~\vspace{5cm}
-\begin{flushright}
-\begin{minipage}[t]{.5\textwidth}
-\begin{flushright}
-\itshape{{#1}}
-\end{flushright}
-\end{minipage}
-\end{flushright}
-\restoregeometry
-}
-
-%*****************************************************************
-%										TITLES STYLES
-%*****************************************************************
 
 \usepackage{titlesec}
 \titlespacing*{\chapter}{0cm}{0cm}{1.4cm}[1cm]
@@ -195,7 +110,89 @@
   {}
 
 %*****************************************************************
-%										ALGORITHMS
+%                         CUSTOM COMMANDS                         
+%*****************************************************************
+
+\newcommand*\blankpage{\newpage\null\thispagestyle{empty}\newpage}
+\newcommand{\todo}{{\bfseries\sffamily{TODO}}~}
+% command length: takes as input a list and a name and instantiate a counter
+% with the length of the list
+\makeatletter
+\newcommand{\length}[2]{%
+    \newcounter{#2}%
+    \renewcommand*{\do}[1]{\stepcounter{#2}}%
+    \docsvlist{#1}%
+}
+\makeatother
+
+%*****************************************************************
+%                          CUSTOM COLORS                          
+%*****************************************************************
+
+\definecolor{ThesisGray}{HTML}{999999}
+
+%*****************************************************************
+%                            TITLEPAGE                            
+%*****************************************************************
+
+%  Formatting authors and co-supervisors for title page
+\makeatletter
+\newtoggle{printAuthorEntry}
+\newcommand\formatAuthors[1]{%
+	\togglefalse{printAuthorEntry}
+  	\@for\@ii:=#1\do{%
+    		\iftoggle{printAuthorEntry}
+    		{\printMatriculationPrefix~\@ii\\ \togglefalse{printAuthorEntry}}
+			{%
+				\listxadd\authorsList\@ii%
+				\textsc{\@ii}\\%
+				\toggletrue{printAuthorEntry}%
+			}%
+  	}%
+}
+\newcommand\formatCoSupervisors[1]{\@for\@ii:=#1\do{\@ii\\}}
+\makeatother
+
+\newcommand{\authors}[1]{%
+	\newcommand{\printAuthor}{\formatAuthors{#1}}%
+	\author{\authorsList}%
+}
+
+\let\OldTitle\title
+\renewcommand{\title}[1]{\OldTitle{#1}\newcommand{\printTitle}{{#1}}}
+
+\newcommand*\university[1]{\newcommand{\printUniversity}{{#1}}}
+\newcommand*\faculty[1]{\newcommand{\printFaculty}{{#1}}}
+\newcommand*\school[1]{\newcommand{\printSchool}{{#1}}}
+\newcommand*\department[1]{\newcommand{\printDepartment}{{#1}}}
+\newcommand*\course[1]{\newcommand{\printCourse}{{#1}}}
+\newcommand*\supervisor[1]{\newcommand{\printSupervisor}{{#1}}}
+\newcommand*\cosupervisors[1]{\newcommand{\printCoSupervisors}{\formatCoSupervisors{#1}}
+\length{#1}{CoSupervisors}}
+\newcommand*\academicYear[1]{\newcommand{\printYear}{{#1}}}
+\newcommand*\matriculationPrefix[1]{\newcommand{\printMatriculationPrefix}{{#1}}}
+
+%*****************************************************************
+%                           DEDICATION                           
+%*****************************************************************
+
+\newcommand*\dedication[1]{
+\cleardoublepage
+\newgeometry{left=3cm,right=3cm}
+\thispagestyle{empty}
+~\vspace{5cm}
+\begin{flushright}
+\begin{minipage}[t]{.5\textwidth}
+\begin{flushright}
+\itshape{{#1}}
+\end{flushright}
+\end{minipage}
+\end{flushright}
+\restoregeometry
+}
+
+%*****************************************************************
+%                           ALGORITHMS                           
 %*****************************************************************
 
 \usepackage{algorithm}
@@ -208,7 +205,7 @@
 \usepackage{lmodern}
   
 %*****************************************************************
-%										MATH SETTINGS
+%                          MATH SETTINGS                          
 %*****************************************************************
 
 %\usepackage{mathptmx}
@@ -220,9 +217,11 @@
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\var}{Var}
 \DeclareMathOperator*{\ev}{\mathbb{E}}
+\newcommand{\Var}[1]{\var\left[ {#1} \right]}
+\newcommand{\Ev}[1]{\ev\left[ {#1} \right]}
   
 %*****************************************************************
-%											THEOREMS
+%                            THEOREMS                            
 %*****************************************************************
 
 \newtheorem{theorem}{Theorem}
@@ -241,7 +240,33 @@
 %\renewcommand\qedsymbol{$\blacksquare$}
   
 %*****************************************************************
-%											TITLE PAGE
+%                       EXAMPLE ENVIRONMENT                       
+%*****************************************************************
+
+\newmdenv[ % Define mdframe settings and store as leftrule
+  linecolor=ThesisGray,
+  linewidth = 2pt,
+  topline=false,
+  bottomline=false,
+  rightline=false,
+  skipabove=\topsep,
+  skipbelow=\topsep
+]{leftrule}
+
+\newenvironment{example}{
+	\medskip
+	\begin{leftrule}
+	\textbf{Example}
+	\medskip
+	\color{black!60}
+   	\newline%
+}{
+	\medskip
+\end{leftrule}
+}
+
+%*****************************************************************
+%                           TITLE PAGE                           
 %*****************************************************************
 
 \newcommand{\polimiLogoPath}{./lib/logo_polimi_symbol.pdf}
@@ -285,12 +310,12 @@ Master of Science in\\
 \fi
 
 \ifcsname printCoSupervisors\endcsname
-\ifnum\value{CoSupervisors}>0
-\vspace{6px} \noindent Co-Supervisor%
-\ifnum\value{CoSupervisors}>1s\fi% add final 's' if more than one Co-Supervisor
-	:\\
+  \ifnum\value{CoSupervisors}>0
+    \vspace{6px} \noindent Co-Supervisor%
+    % add final 's' if more than one Co-Supervisor
+    \ifnum\value{CoSupervisors}>1s\fi:\\
     \textsc{\printCoSupervisors}
-\fi
+  \fi
 \fi
 
 \ifcsname printAuthor\endcsname
@@ -310,7 +335,7 @@ Academic Year \printYear
 }
 
 %*****************************************************************
-%									TABLE OF CONTENTS
+%                        TABLE OF CONTENTS                        
 %*****************************************************************
 
 \newcounter{nfigures}

@@ -8,13 +8,13 @@
 \usepackage{lib/polithesis}
 
 %*****************************************************************
-%                        CUSTOM PACKAGES
+%                         CUSTOM PACKAGES                         
 %*****************************************************************
 
 % Should you need to add custom packages, this is the right place.
 
 %*****************************************************************
-%                        THESIS CUSTOMIZATIONS
+%                      THESIS CUSTOMIZATIONS                      
 %*****************************************************************
 %
 %   In this section, you can insert the data to be displayed in
@@ -26,20 +26,22 @@
 % Specify thesis language in lowercase (default "english")
 \thesislanguage{english}
 % Choose the font for the thesis
-% The available choices are: "Computer Modern", "Baskerville", "Nimbus", "Palatino", "Utopia"
-% If an invalid font is set, the fallback font used is the default LaTeX font "Computer Modern"
+% The available choices are: "Computer Modern", "Baskerville",
+% "Nimbus", "Palatino", "Utopia".
+% If an invalid font is set, the fallback font used is the default
+% LaTeX font "Computer Modern".
 \thesisfont{Palatino}
 % Change title color
 \titlecolor{MidnightBlue}
 % Change color of chapters' number
 \chapnumbercolor{ThesisGray}
-% The colors available are the default ones plus the 68 dvips colors.
-% Find more at https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors
-% You can define you own color as done for ThesisGray in the library file, even if it is
-% not recommended.
+% The available colors are the 68 dvips colors plus the defaults.
+% (https://en.wikibooks.org/wiki/LaTeX/Colors#Predefined_colors)
+% You can define you own color as done for ThesisGray in the
+% library file, even if it is not recommended.
 
 %*****************************************************************
-%                        TITLE PAGE DATA
+%                         TITLE PAGE DATA                         
 %*****************************************************************
 %
 %   In this section, you can insert the data to be displayed in
@@ -51,22 +53,24 @@
 \university{Politecnico di Milano}
 \faculty{Facoltà di Ingegneria}
 \school{Scuola di Ingegneria Industriale e dell'Informazione}
-\department{Dipartimento di Elettronica, Informazione e Bioingegneria}
+\department{Dipartimento di Elettronica, Informazione e
+ Bioingegneria}
 \course{Computer Science and Engineering}
 \title{A Fancy Title\\for a Fancy Thesis}
 \supervisor{Prof. Enrico Fermi}
-% You can specify more than one co-supervisor, separating each one with a comma.
+% You can specify more than one co-supervisor, separating them
+% with commas.
 \cosupervisors{Prof. Alice First, Dr. Bob Second}
-% Each author should be added as a tuple of her name and her matriculation
-% number joined with a comma.
-% You can specify more than one author, separating each one with a comma.
-% They will be shown in different lines.
+% Each author should be added as a tuple of her name and her
+% matriculation number joined with a comma.
+% You can specify more than one author, separating each one with
+% a comma. They will be printed in different lines.
 \authors{Your Self, 000000, Your Second Self, 111111}
-\matriculationPrefix{matr.}  % specify prefix for matriculation number
+\matriculationPrefix{matr.}
 \academicYear{20MM/20MN}
 
 %*****************************************************************
-%                                THESIS CONTENT
+%                         THESIS CONTENT                         
 %*****************************************************************
 
 \begin{document}
@@ -80,33 +84,34 @@
 % Chapters
 \frontmatter
 \pagenumbering{Roman}
-\include{Chapters/Abstract}
-\include{Chapters/Sommario}
-\include{Chapters/Acknowledgements}
+\input{Chapters/Abstract}
+\input{Chapters/Sommario}
+\input{Chapters/Acknowledgements}
 \thesistoc
 
 %*****************************************************************
-%                                        CHAPTERS
+%                            CHAPTERS                            
 %*****************************************************************
 
 \mainmatter
-\include{Chapters/Introduction}
-\include{Chapters/Preliminaries_and_Sota}
-\include{Chapters/ProblemFormulation}
-\include{Chapters/Solution}
-\include{Chapters/Evaluation}
-\include{Chapters/Conclusions}
+\input{Chapters/Introduction}
+\input{Chapters/Preliminaries_and_Sota}
+\input{Chapters/LaTeX_tips_REMOVE_BEFORE_SUBMISSION}
+\input{Chapters/ProblemFormulation}
+\input{Chapters/Solution}
+\input{Chapters/Evaluation}
+\input{Chapters/Conclusions}
 
 %*****************************************************************
-%                                        APPENDIX
+%                            APPENDIX                            
 %*****************************************************************
 
 \appendix
-\include{Chapters/Appendix}
-\include{Chapters/Thanks}
+\input{Chapters/Appendix}
+\input{Chapters/Thanks}
 
 %*****************************************************************
-%                                    REFERENCE LIST
+%                         REFERENCE LIST                         
 %*****************************************************************
 
 \bibliography{biblio}
